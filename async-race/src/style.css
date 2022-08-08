@@ -1,0 +1,530 @@
+@font-face {
+  font-family: 'URW';
+  font-weight: 400;
+  src: url(./assets/fonts/URW/URWDINCond-Regular.ttf);
+};
+@font-face {
+  font-family: 'URW';
+  font-weight: 900;
+  src: url(./assets/fonts/URW/URWDIN-Black.ttf);
+};
+@font-face {
+  font-family: 'URW';
+  font-weight: 700;
+  src: url(./assets/fonts/URW/URWDINCond-Bold.ttf);
+};
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {  margin: 0; padding: 0; }
+ul, ol { display: flex; flex-direction:column; margin: 0; padding: 0;}
+a { text-decoration: none; }
+input { border-style: none; background: transparent; outline: none; }
+button { padding: 0; background: none; border: none; outline: none; }
+
+body {
+  height: 100vh;
+  background-color: #9abaed;
+  color: #000000;
+  font-family: 'URW', sans-serif;
+  font-weight: 400;
+  font-size: 1em;
+  overflow-x: hidden;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  min-height: 100%;
+  margin: 0 auto;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3em;
+  z-index: 20;
+}
+.header__logo {
+  font-size: 3.7em;
+  font-weight: 900;
+  line-height: 80%;
+  padding-top: 0.5em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.header__logo::after {
+  content: '';
+  position: absolute;
+  background-image: url(./assets/img/cloud.png);
+  width: 4em;
+  height: 2em;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 0;
+  transition: 17s linear;
+}
+.header__logo::before {
+  content: '';
+  position: absolute;
+  left: 70%;
+  top: 5%;
+  background-image: url(./assets/img/cloud1.png);
+  width: 3em;
+  height: 1.5em;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 0;
+  transition: 14s linear;
+}
+.header__logo:hover::after {
+  transform: translateX(10em);
+}
+.header__logo:hover::before {
+  transform: translateX(-10em);
+}
+
+.header__nav {
+  display: flex;
+  gap: 2em;
+}
+
+.header__garage,
+.header__winners {
+  font-size: 1.875em;
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: 5%;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.header__garage:hover,
+.header__winners:hover {
+/*  border: 1px solid #ffcc4c; */
+  color: #ffcc4c;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+/*--------------GARAGE---------------*/
+.garage {
+  width: 100%;
+}
+.garage__action {
+  display: flex;
+  padding: 0 3em;
+}
+.garage__generate,
+.garage__create {
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: 0.25s;
+}
+.garage__generate:hover,
+.garage__create:hover {
+  color: #ffcc4c;
+}
+
+.garage__info {
+  text-transform: uppercase;
+  margin-top: 2em;
+}
+.garage__count {
+  font-size: 2em;
+  padding-left: 0.5em;
+  color: #ffcc4c;
+}
+.garage__race {
+  height: 2.5em;
+  align-self: center;
+  font-size: 1.5em;
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: 5%;
+  text-transform: uppercase;
+  border: 2px solid #ffcc4c;
+  padding: 0.2em 0.8em;
+  margin: 0 auto;
+  color: #ffcc4c;
+  background-color: transparent;
+  cursor: pointer;
+  transition: 0.25s;
+}
+.garage__race:not([disabled]):hover {
+  box-shadow: #ffcc4c 0 0 0 1.5px;
+}
+.garage__pagination {
+  display: flex;
+  gap: 2.2em;
+}
+.garage__pagination_prev,
+.garage__pagination_next {
+text-transform: uppercase;
+cursor: pointer;
+transition: 0.25s;
+}
+.garage__pagination_prev:hover,
+.garage__pagination_next:hover {
+color: #ffcc4c;
+}
+.garage__pagination_cur {
+  font-size: 1.2em;
+  user-select: none;
+}
+ .garage__track {
+   display: flex;
+   flex-direction: row-reverse;
+   justify-content: space-between;
+   width: 100%;
+   height: 4.5em;
+   border-bottom: 3px #000000 dashed;
+ }
+ .garage__track:nth-child(1) {
+  border-top: 3px #000000 dashed;
+}
+.garage__finish {
+  width: 2.5em;
+  height: 5em;
+  margin: 0.5em 6em;
+  background-image: url(./assets/img/finish.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.garage__race_reset {
+  align-self: flex-end;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.25s;
+  color: #707070;
+}
+.garage__race_win {
+  position: absolute;
+  left: 35%;
+  top: 50%;
+  font-size: 3em;
+  z-index: 3;
+  color: #000000;
+}
+.garage__cars {
+  background-color: #8f954b;
+}
+
+/*--------------CAR---------------*/
+
+.car {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  gap: 1em;
+  background-color: #8f954b;
+}
+.car__switch {
+  display: flex;
+  align-items: flex-end;
+}
+.car__settings {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: end;
+  padding-left: 3em;
+  gap: 1em;
+}
+.car__delete,
+.car__update {
+  width: 1.2em;
+  height: 1.2em;
+  background-image: url('./assets/img/delete.svg') ;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: 0.25s;
+}
+.car__delete:hover,
+.car__update:hover {
+  filter: invert(91%) sepia(91%) saturate(4133%) hue-rotate(317deg) brightness(101%) contrast(102%);
+}
+.car__update {
+  background-image: url('./assets/img/settings.svg') ;
+}
+.car__image {
+  width: 4em;
+  height: 4em;
+  -webkit-mask-image: url("./assets/img/tractor1.svg");
+  -webkit-mask-size: cover;
+  transition: ease-in-out;
+  background: #ffcc4c;
+}
+ .car__name {
+    align-self: end;
+    margin-left: -5em;
+ }
+.footer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3em;
+}
+.github {
+  width: 4em;
+  height: 2em;
+}
+.github__link {
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.25s; 
+}
+.github__link:hover {
+  color: #ffcc4c;
+}
+.rss__logo {
+  width: 4em;
+  height: 2em;
+  background-image: url(https://rs.school/images/rs_school_js.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  transition: 0.25s; 
+}
+footer .rss__logo:hover {
+  filter: invert(91%) sepia(91%) saturate(4133%) hue-rotate(317deg) brightness(101%) contrast(102%);
+}
+
+/*-------------CAR SWITCH-----------------------*/
+.car__switch input[type="checkbox"] {
+  display: none;
+}
+.car__switch input[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  width: 0.25em;
+  height: 2em;
+  margin-bottom: 20px;
+  border-radius: 0.8em;
+  background: #707070;
+  cursor: pointer;
+  -webkit-transition: background 0.1s ease-in-out;
+  transition: background 0.1s ease-in-out;
+}
+.car__switch input[type="checkbox"] + label:before {
+  content: "";
+  display: block;
+  width: 0.8em;
+  height: 0.8em;
+  border-radius: 0.8em;
+  background:#f5f5f5;
+  position: absolute;
+  left: -0.25em;
+  top: 1em;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.car__switch input[type="checkbox"]:checked + label:before {
+  box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.2);
+  background-color: #ffcc4c;
+  top: 0.2em;
+}
+
+/*----------POPUP-------------*/
+.popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(41, 41, 41, 0.6);
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.popup_open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup__body {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 20%;
+}
+
+.popup__content {
+  position: relative;
+  width: 13em;
+  height: 6em;
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  padding-left: 3em;
+  justify-content: center;
+  color: #000000;
+  font-size: 1.8em;
+  background-color: #fafafa;
+  border: none;
+  z-index: 5;
+
+}
+.popup__name {
+  width: 11em;
+  height: 2em;
+  border: 1px #636363 solid;
+  cursor: pointer;
+  transition: 0.25s;
+}
+.popup__color {
+  cursor: pointer;
+  transition: 0.25s;
+}
+.popup__name::placeholder{
+  color:#aaaaaa;
+  font-family: "URW";
+  text-transform: uppercase;
+}
+.popup__button {
+  width: 7em;
+  height: 2em;
+  align-self: center;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  border: 2px #000000 solid;
+  cursor: pointer;
+  transition: 0.25s;
+}
+.popup__button:hover {
+  background-color: #ffcc4c;
+}
+.popup__window {
+  position: relative;
+}
+.popup__cross {
+  position: absolute;
+  top: 0em;
+  left: 10.5em;
+  font-size: 1.5em;
+  background-color: transparent;
+  cursor: pointer;
+}
+.popup__cross:hover {
+  color: #ffcc4c;
+}
+
+/*----------WINNERS--------------------*/
+.winners {
+position: fixed;
+top: 0;
+
+width: 100%;
+height: 100%;
+padding: 10%;
+font-size: 1.4em;
+background-color: #9abaed;
+z-index: 10;
+opacity: 0;
+visibility: hidden;
+}
+
+.winners_open {
+opacity: 1;
+visibility: visible;
+}
+
+.winners__head {
+  display: flex;
+  gap: 0.8em;
+  margin-left: -1.5em;
+}
+.winner {
+  display: flex;
+  gap: 1em;
+  width: 17em;
+  font-size: 1em;
+  border-bottom: 1px solid #000000;
+}
+
+.winner__color {
+  width: 1.2em;
+  height: 1.2em;
+  -webkit-mask-image: url("./assets/img/tractor1.svg");
+  -webkit-mask-size: cover;
+  transition: 1s;
+  background: #ffcc4c;
+}
+.winner__num,
+.winners__num{
+  width: 1em;
+}
+.winners__color{
+  width: 1.2em;
+}
+.winner__name,
+.winners__name{
+  width: 6em;
+}
+.winner__wins,
+.winners__wins {
+  width: 2em;
+}
+.winner__time,
+.winners__time {
+  width: 2em;
+}
+.winners__count {
+  text-transform: uppercase;
+  font-size: 0.8em;
+}
+.winners__number {
+  font-size: 1.2em;
+  padding-left: 0.5em;
+  color:#ffcc4c
+}
+.winners__pagination {
+  display: flex;
+  align-items: end;
+  gap: 2.2em;
+  width: 8em;
+  margin-bottom: 2em;
+  border-bottom: 1px  #000000 solid;
+}
+.winners__pagination_prev,
+.winners__pagination_next {
+text-transform: uppercase;
+font-size: 0.8em;
+cursor: pointer;
+transition: 0.25s;
+}
+.winners__pagination_prev:hover,
+.winners__pagination_next:hover {
+color: #ffcc4c;
+}
+.winners__pagination_cur {
+  font-size: 1.2em;
+  user-select: none;
+}
+.winners__time,
+.winners__wins { 
+  cursor: pointer;
+  transition: 0.25;
+}
+.winners__time:hover,
+.winners__wins:hover { 
+  text-decoration: underline;
+}
+.DESC {
+  background-image: url(./assets/img/narrow_down.svg);
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position-x:1.3em;
+}
+.ASC {
+  background-image: url(./assets/img/narrow_up.svg);
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position-x:1.3em;
+}
