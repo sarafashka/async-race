@@ -1,6 +1,6 @@
-import { CarsInGarage, WinnersСarsOnPage } from '../components/interfaces';
-import create from '../components/utils/createElement';
-import imageSvg from '../components/utils/svgImage';
+import { CarsInGarage, WinnersСarsOnPage } from './interfaces';
+import create from './utils/createElement';
+import imageSvg from './utils/svgImage';
 
 class Draw {
   app(carsInGarage: CarsInGarage) {

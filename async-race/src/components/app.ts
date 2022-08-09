@@ -1,6 +1,6 @@
 import Garage from './garage';
 import Winners from './winners';
-import Draw from '../draw/draw';
+import Draw from './draw';
 import { getCars, getWinners } from './appLoad';
 import check from './utils/checkClass';
 import { CarsInGarage } from './interfaces';
@@ -33,7 +33,6 @@ class App {
   }
 
   private defineTarget(event: Event) {
-    console.log(event.target);
     const button = <HTMLElement>event.target;
     const carId = Number(button.closest('.car')?.id);
     if (check(button, 'garage__create')) this.garage.openPopupCar();
