@@ -6,7 +6,7 @@ import {
 import {
   createCar, createWinner, getWinner, updateWinner,
 } from './appLoad';
-import { carBrand, carModal } from './carModels';
+import { carBrand, carModal } from './utils/carModels';
 import Car from './car';
 import paginate from './utils/paginate';
 
@@ -93,16 +93,16 @@ class Garage {
     callback();
   }
 
-  getInfoAboutCar(name:HTMLInputElement, color:HTMLInputElement) {
+  private getInfoAboutCar(name:HTMLInputElement, color:HTMLInputElement) {
     return { name: name.value, color: color.value };
   }
 
-  alertNoNameCar() {
+  private alertNoNameCar() {
     const popupInputName = <HTMLElement>document.getElementById('popupInputName');
     popupInputName.style.borderColor = '#ff0000';
   }
 
-  clearInfoAboutCar() {
+  private clearInfoAboutCar() {
     const popupInputName = <HTMLInputElement>document.getElementById('popupInputName');
     const popupInputColor = <HTMLInputElement>document.getElementById('popupInputColor');
     const popupCar = <HTMLElement>document.getElementById('popupCar');
@@ -160,7 +160,7 @@ class Garage {
     alertOfWin.innerHTML = '';
   }
 
-  async createWinner(idWin:number, timeWin: number) {
+  private async createWinner(idWin:number, timeWin: number) {
     const winnerInfo: IWinner | false = await this.getWinnerInfo(idWin);
     const countOfWins = 1;
     if (!winnerInfo) {
@@ -179,18 +179,18 @@ class Garage {
     await updateWinner(idWin, winnerUpdate);
   }
 
-  async getWinnerInfo(idWin: number) {
+  private async getWinnerInfo(idWin: number) {
     const winnerInfo: IWinner | false = await getWinner(idWin);
     return winnerInfo;
   }
 
-  alertWinner(idWin:number, timeWin: number) {
+  private alertWinner(idWin:number, timeWin: number) {
     const alertOfWin = <HTMLElement>document.getElementById('garageWin');
     const carInGarage = this.cars.find((car) => idWin === car.id);
     alertOfWin.innerHTML = `Win: ${carInGarage?.name} (${timeWin}s)`;
   }
 
-  changeResetBtn(reset:boolean) {
+  private changeResetBtn(reset:boolean) {
     const resetBtn = <HTMLButtonElement>document.getElementById('raceReset');
     if (reset) {
       resetBtn.disabled = false;
@@ -201,7 +201,7 @@ class Garage {
     }
   }
 
-  changeRaceBtn(race:boolean) {
+  private changeRaceBtn(race:boolean) {
     const raceBtn = <HTMLButtonElement>document.getElementById('race');
     if (race) {
       raceBtn.disabled = false;

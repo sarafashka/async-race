@@ -25,7 +25,7 @@ class Winners {
     return { carsWinners, count };
   }
 
-  getCarsWinners(cars: Array<ICar>, winners: Array<IWinner>) {
+  private getCarsWinners(cars: Array<ICar>, winners: Array<IWinner>) {
     const carsWinners: Array<ICarsWinners> = [];
     winners.forEach((winner) => {
       cars.forEach((car) => {
@@ -60,7 +60,7 @@ class Winners {
     callback();
   }
 
-  defineSortOrder(button:HTMLElement) {
+  private defineSortOrder(button:HTMLElement) {
     const ASC = 'ASC';
     const DESC = 'DESC';
     this.clearSortOrder(button, ASC, DESC);
@@ -79,7 +79,7 @@ class Winners {
     }
   }
 
-  clearSortOrder(button:HTMLElement, order1:string, order2:string) {
+  private clearSortOrder(button:HTMLElement, order1:string, order2:string) {
     const winnersTime = document.querySelector('.winners__time');
     const winnersWins = document.querySelector('.winners__wins');
 

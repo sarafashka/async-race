@@ -6,11 +6,11 @@ import check from './utils/checkClass';
 import { CarsInGarage } from './interfaces';
 
 class App {
-  garage: Garage;
+  private garage: Garage;
 
-  winners: Winners;
+  private winners: Winners;
 
-  draw: Draw;
+  private draw: Draw;
 
   constructor() {
     this.garage = new Garage();
@@ -24,7 +24,7 @@ class App {
     this.addHandlers();
   }
 
-  addHandlers() {
+  private addHandlers() {
     const body = <HTMLElement>document.querySelector('body');
     body.addEventListener('click', (e:Event) => this.defineTarget(e));
 
@@ -32,7 +32,7 @@ class App {
     popupCar?.addEventListener('click', (e:Event) => this.defineTarget(e));
   }
 
-  defineTarget(event: Event) {
+  private defineTarget(event: Event) {
     console.log(event.target);
     const button = <HTMLElement>event.target;
     const carId = Number(button.closest('.car')?.id);
@@ -64,7 +64,7 @@ class App {
     }
   }
 
-  async requestCars(pageStart?:number) {
+  protected async requestCars(pageStart?:number) {
     let pageNumber: number;
     pageNumber = this.garage.getPageNumber();
     if (pageStart) pageNumber = pageNumber || pageStart;
@@ -74,7 +74,7 @@ class App {
     this.garage.addCarsToGarage(cars);
   }
 
-  async requestWinners() {
+  protected async requestWinners() {
     const page = this.winners.getPageNumber();
     const { sort, order } = this.winners.sortWinners;
     const limit = this.winners.WINNERS_ON_PAGE;
@@ -87,7 +87,7 @@ class App {
     this.winners.open();
   }
 
-  view(cars:CarsInGarage) {
+  private view(cars:CarsInGarage) {
     const wrapper = document.getElementById('wrapper');
     if (wrapper) this.draw.cars(cars);
     else this.draw.app(cars);

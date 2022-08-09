@@ -1,5 +1,6 @@
 import { CarsInGarage, WinnersСarsOnPage } from '../components/interfaces';
 import create from '../components/utils/createElement';
+import imageSvg from '../components/utils/svgImage';
 
 class Draw {
   app(carsInGarage: CarsInGarage) {
@@ -16,7 +17,7 @@ class Draw {
     this.popup(body);
   }
 
-  header(wrapper:HTMLElement) {
+  private header(wrapper:HTMLElement) {
     const { body } = document;
     const header = create({ tagname: 'header', class: 'header', parent: wrapper });
     create({
@@ -34,7 +35,7 @@ class Draw {
     });
   }
 
-  footer(wrapper:HTMLElement) {
+  private footer(wrapper:HTMLElement) {
     const footer = create({ tagname: 'footer', class: 'footer', parent: wrapper });
     const github = create({ tagname: 'div', class: 'github', parent: footer });
     const githubLink = <HTMLLinkElement>create({
@@ -48,7 +49,7 @@ class Draw {
   }
 
   // eslint-disable-next-line max-lines-per-function
-  garage(wrapper:HTMLElement) {
+  private garage(wrapper:HTMLElement) {
     const main = create({
       tagname: 'main', class: 'main', id: 'main', parent: wrapper,
     });
@@ -92,6 +93,7 @@ class Draw {
     });
   }
 
+  // eslint-disable-next-line max-lines-per-function
   cars(carsInGarage: CarsInGarage) {
     const CARS_ON_PAGE = 7;
     const garage = document.getElementById('garageCars');
@@ -123,9 +125,9 @@ class Draw {
         carSwitchInput.type = 'checkbox';
         const carSwitchLabel = <HTMLLabelElement>create({ tagname: 'label', class: 'car__switch_label', parent: carSwitch });
         carSwitchLabel.htmlFor = carSwitchInput.id;
-        const carImage = create({ tagname: 'svg', class: `car__image${car.id}`, parent: carItem });
-        carImage.classList.add('car__image');
-        carImage.style.background = car.color;
+        const carImage = create({ tagname: 'div', class: 'car__image', parent: carItem });
+        carImage.innerHTML = imageSvg;
+        carImage.style.fill = car.color;
         create({
           tagname: 'div', class: 'car__name', parent: carItem, text: `${car.name}`,
         });
@@ -133,10 +135,10 @@ class Draw {
     }
   }
 
-  winners() {
+  private winners() {
     const winnersDiv = <HTMLElement>document.getElementById('winners');
-
-    const pagination = create({ tagname: 'div', class: 'winners__pagination', parent: winnersDiv });
+    const winnersWrapper = create({ tagname: 'div', class: 'winners__wrapper', parent: winnersDiv });
+    const pagination = create({ tagname: 'div', class: 'winners__pagination', parent: winnersWrapper });
     create({
       tagname: 'div', class: 'winners__pagination_prev', parent: pagination, text: 'Prev',
     });
@@ -147,16 +149,16 @@ class Draw {
       tagname: 'div', class: 'winners__pagination_next', parent: pagination, text: 'Next',
     });
 
-    const winnersHead = create({ tagname: 'div', class: 'winners__head', parent: winnersDiv });
+    const winnersHead = create({ tagname: 'div', class: 'winners__head', parent: winnersWrapper });
     create({ tagname: 'div', class: 'winners__color', parent: winnersHead });
     create({
       tagname: 'div', class: 'winners__num', parent: winnersHead, text: '№',
     });
     create({
-      tagname: 'div', class: 'winners__color', parent: winnersHead, text: 'Color',
+      tagname: 'div', class: 'winners__color', parent: winnersHead, text: 'Car',
     });
     create({
-      tagname: 'div', class: 'winners__name', parent: winnersHead, text: 'Name',
+      tagname: 'div', class: 'winners__name', parent: winnersHead, text: 'Model',
     });
     create({
       tagname: 'div', class: 'winners__wins', parent: winnersHead, text: 'Wins',
@@ -165,7 +167,10 @@ class Draw {
       tagname: 'div', class: 'winners__time', parent: winnersHead, text: 'Best time(sec)',
     });
     create({
-      tagname: 'div', class: 'winners__list', id: 'winnersList', parent: winnersDiv,
+      tagname: 'div', class: 'winners__list', id: 'winnersList', parent: winnersWrapper,
+    });
+    create({
+      tagname: 'div', class: 'winners__image', parent: winnersWrapper,
     });
   }
 
@@ -184,8 +189,9 @@ class Draw {
         create({
           tagname: 'div', class: 'winner__num', parent: winnersItem, text: `${i + 1}`,
         });
-        const winnerColor = create({ tagname: 'svg', class: 'winner__color', parent: winnersItem });
-        winnerColor.style.background = carWinner.color;
+        const winnerColor = create({ tagname: 'div', class: 'winner__color', parent: winnersItem });
+        winnerColor.innerHTML = imageSvg;
+        winnerColor.style.fill = carWinner.color;
         create({
           tagname: 'div', class: 'winner__name', parent: winnersItem, text: `${carWinner.name}`,
         });
@@ -207,7 +213,7 @@ class Draw {
     }
   }
 
-  popup(body:HTMLElement) {
+  private popup(body:HTMLElement) {
     const popup = create({
       tagname: 'div', class: 'popup', parent: body, id: 'popupCar',
     });

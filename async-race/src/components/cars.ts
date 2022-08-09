@@ -54,7 +54,7 @@ abstract class Cars implements ICarInGarage {
     return time;
   }
 
-  animate(carFigure:HTMLElement, engine:IEngine) {
+  protected animate(carFigure:HTMLElement, engine:IEngine) {
     const car = carFigure;
 
     const { velocity, distance } = engine;
@@ -78,13 +78,13 @@ abstract class Cars implements ICarInGarage {
     driveCar();
   }
 
-  stopAnimate(carFigure:HTMLElement) {
+  protected stopAnimate(carFigure:HTMLElement) {
     const car = carFigure;
     window.cancelAnimationFrame(this.animationId);
     car.style.transform = 'translateX(0px)';
   }
 
-  getTime(engine:IEngine) {
+  protected getTime(engine:IEngine) {
     const { velocity, distance } = engine;
     const time = Math.round(distance / velocity);
     return time;

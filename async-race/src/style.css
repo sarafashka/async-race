@@ -251,12 +251,8 @@ color: #ffcc4c;
   background-image: url('./assets/img/settings.svg') ;
 }
 .car__image {
-  width: 4em;
-  height: 4em;
-  -webkit-mask-image: url("./assets/img/tractor1.svg");
-  -webkit-mask-size: cover;
+  width: 4.5em;
   transition: ease-in-out;
-  background: #ffcc4c;
 }
  .car__name {
     align-self: end;
@@ -317,7 +313,7 @@ footer .rss__logo:hover {
   width: 0.8em;
   height: 0.8em;
   border-radius: 0.8em;
-  background:#f5f5f5;
+  background: #bcb7b7;
   position: absolute;
   left: -0.25em;
   top: 1em;
@@ -434,10 +430,18 @@ visibility: hidden;
 opacity: 1;
 visibility: visible;
 }
+.winners__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  padding-top: 3em;
+}
 
 .winners__head {
   display: flex;
   gap: 0.8em;
+  width: 20em;
   margin-left: -1.5em;
 }
 .winner {
@@ -451,10 +455,7 @@ visibility: visible;
 .winner__color {
   width: 1.2em;
   height: 1.2em;
-  -webkit-mask-image: url("./assets/img/tractor1.svg");
-  -webkit-mask-size: cover;
   transition: 1s;
-  background: #ffcc4c;
 }
 .winner__num,
 .winners__num{
@@ -527,4 +528,23 @@ color: #ffcc4c;
   background-repeat: no-repeat;
   background-size: 50%;
   background-position-x:1.3em;
+}
+.winners__image {
+  width: 10em;
+  height: 10em;
+  background-image: url(./assets/img/petr.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+@media (max-width: 600px) {
+  .header__logo::after {
+    display: none;
+  }
+  .header__logo::before {
+    top: 9%;
+  }
+  .header__logo:hover::before {
+    transform: none;
+  }
 }
