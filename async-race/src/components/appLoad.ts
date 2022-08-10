@@ -2,7 +2,7 @@ import {
   ICar, IEngine, INewCar, IWinner, SortOrder, Sort, WinnerUpdate,
 } from './interfaces';
 
-const url = 'http://127.0.0.1:3000/';
+const url = 'https://fast-wave-75165.herokuapp.com/';
 
 export async function getCars(page?:number, limit?:number) {
   let cars: Array<ICar>;
