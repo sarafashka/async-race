@@ -187,7 +187,7 @@ class Garage {
   private alertWinner(idWin:number, timeWin: number) {
     const alertOfWin = <HTMLElement>document.getElementById('garageWin');
     const carInGarage = this.cars.find((car) => idWin === car.id);
-    alertOfWin.innerHTML = `Win: ${carInGarage?.name} (${timeWin}s)`;
+    alertOfWin.innerHTML = `Lucky: ${carInGarage?.name} (${timeWin}s)`;
   }
 
   private changeResetBtn(reset:boolean) {
